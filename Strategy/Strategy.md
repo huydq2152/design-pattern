@@ -81,6 +81,8 @@ public class OrderService
 }
 ```
 
+Or use keyed dependency injection service with .NET 8+
+
 **Benefits over traditional Strategy:**
 - Automatic dependency injection into strategy implementations
 - Centralized strategy management through DI container

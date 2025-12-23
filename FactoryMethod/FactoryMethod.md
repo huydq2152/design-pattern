@@ -63,6 +63,8 @@ public class PaymentProcessorFactory : IPaymentProcessorFactory
 }
 ```
 
+Or use keyed dependency injection service with .NET 8+
+
 **Benefits over traditional Factory Method:**
 - Automatic dependency injection into created objects
 - Better testability with mock factories
