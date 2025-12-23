@@ -1,68 +1,13 @@
-﻿public class Context
-{
-    private IStrategy _strategy;
+﻿using Conceptual.Context;
+using Conceptual.Strategies;
 
-    public Context()
-    {
-    }
-
-    public Context(IStrategy strategy)
-    {
-        _strategy = strategy;
-    }
-
-    public void SetStrategy(IStrategy strategy)
-    {
-        _strategy = strategy;
-    }
-
-    public void DoSomeBusinessLogic()
-    {
-        Console.WriteLine("Context: Sorting data using the strategy (not sure how it'll do it)");
-        var result = this._strategy.DoAlgorithm(new List<string> { "a", "b", "c", "d", "e" });
-
-        string resultStr = string.Empty;
-        foreach (var element in result as List<string>)
-        {
-            resultStr += element + ",";
-        }
-
-        Console.WriteLine(resultStr);
-    }
-}
-
-public interface IStrategy
-{
-    object DoAlgorithm(object data);
-}
-
-public class ConcreteStrategyA : IStrategy
-{
-    public object DoAlgorithm(object data)
-    {
-        var list = data as List<string>;
-        list.Sort();
-
-        return list;
-    }
-}
-
-public class ConcreteStrategyB : IStrategy
-{
-    public object DoAlgorithm(object data)
-    {
-        var list = data as List<string>;
-        list.Sort();
-        list.Reverse();
-
-        return list;
-    }
-}
-
+// Client code demonstrating the Strategy pattern
+// Shows how different algorithms can be plugged in at runtime
 public static class Program
 {
     public static void Main()
     {
+        // Example 1: Setting strategy after context creation
         var context1 = new Context();
 
         Console.WriteLine("Client: Strategy is set to normal sorting.");
@@ -71,16 +16,19 @@ public static class Program
 
         Console.WriteLine();
 
+        // Example 2: Changing strategy at runtime (key feature of Strategy pattern)
         Console.WriteLine("Client: Strategy is set to reverse sorting.");
         context1.SetStrategy(new ConcreteStrategyB());
         context1.DoSomeBusinessLogic();
 
+        // Example 3: Setting strategy at construction time
         Console.WriteLine("Client: Strategy is set to normal sorting.");
         var context2 = new Context(new ConcreteStrategyA());
         context2.DoSomeBusinessLogic();
         
         Console.WriteLine();
 
+        // Example 4: Different context with different strategy
         Console.WriteLine("Client: Strategy is set to reverse sorting.");
         var context3 = new Context(new ConcreteStrategyB());
         context3.DoSomeBusinessLogic();
