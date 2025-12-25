@@ -3,7 +3,8 @@
     "allow": [
       "Bash(dotnet --version:*)",
       "Bash(dotnet build:*)",
-      "Bash(dotnet run:*)"
+      "Bash(dotnet run:*)",
+      "Bash(ls -la \"D:\\\\Save\\\\Computer-science\\\\design-pattern\\\\Observer\"\" | grep -E \"Observer.md \")"
     ]
   }
 }
